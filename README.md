@@ -42,7 +42,7 @@ Open http://localhost:5173
 See `server/.env.example` for all required variables.
 
 ## Live Demo
-- Frontend: https://ai-interview-prep.vercel.app
+- Frontend: https://ai-interview-prep-seven-phi.vercel.app/
 - API: https://ai-interview-prep-api.onrender.com/api/health
 
 ## Built by
