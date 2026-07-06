@@ -46,4 +46,4 @@ See `server/.env.example` for all required variables.
 - API: https://ai-interview-prep-api.onrender.com/api/health
 
 ## Built by
-Sujeet Kumar — 2026
+Sujeet Rajbhar — 2026
