@@ -5,6 +5,8 @@ const ROLES = ['Backend Engineer','Frontend Engineer','Full Stack Engineer','Dev
 
 const scoreColor = s => s >= 8 ? '#10b981' : s >= 5 ? '#f59e0b' : '#ef4444';
 
+const BASE = import.meta.env.VITE_API_URL || '';
+
 const TagChip = ({ label, color, bg, border }) => (
   <span style={{ display:'inline-flex', alignItems:'center', padding:'4px 12px', borderRadius: 99, fontSize: 12, fontWeight: 500, color, background: bg, border: `1px solid ${border}`, margin: '3px 4px 3px 0' }}>{label}</span>
 );
@@ -35,7 +37,11 @@ const ResumeAnalysis = () => {
       const form  = new FormData();
       form.append('resume', file);
       form.append('jobRole', finalRole);
-      const res  = await fetch('/api/ai/resume', { method: 'POST', headers: { Authorization: `Bearer ${token}` }, body: form });
+      const res  = await fetch(`${BASE}/api/ai/resume`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: form,
+      });
       const data = await res.json();
       if (!data.success) throw new Error(data.message);
       setResult(data.data);
@@ -64,13 +70,9 @@ const ResumeAnalysis = () => {
           onClick={() => inputRef.current?.click()}
           style={{
             border: `2px dashed ${file ? 'rgba(108,99,255,0.5)' : 'rgba(255,255,255,0.08)'}`,
-            borderRadius: 16,
-            padding: '36px 24px',
-            textAlign: 'center',
-            cursor: 'pointer',
-            background: file ? 'rgba(108,99,255,0.05)' : 'transparent',
-            transition: 'all 0.25s',
-            marginBottom: 24,
+            borderRadius: 16, padding: '36px 24px', textAlign: 'center',
+            cursor: 'pointer', background: file ? 'rgba(108,99,255,0.05)' : 'transparent',
+            transition: 'all 0.25s', marginBottom: 24,
           }}
         >
           <input ref={inputRef} type="file" accept=".pdf,.txt" style={{ display: 'none' }}
@@ -99,8 +101,7 @@ const ResumeAnalysis = () => {
                 padding: '8px 14px', borderRadius: 10, fontSize: 12, fontWeight: 500, cursor: 'pointer', fontFamily: 'Inter',
                 background: role === r ? 'linear-gradient(135deg,rgba(108,99,255,0.2),rgba(34,211,238,0.1))' : 'rgba(255,255,255,0.03)',
                 border: role === r ? '1px solid rgba(108,99,255,0.45)' : '1px solid rgba(255,255,255,0.06)',
-                color: role === r ? '#c5c2ff' : '#5a6080',
-                transition: 'all 0.18s',
+                color: role === r ? '#c5c2ff' : '#5a6080', transition: 'all 0.18s',
               }}>{r}</button>
             ))}
             <button onClick={() => setRole('custom')} style={{
