@@ -43,7 +43,7 @@ See `server/.env.example` for all required variables.
 
 ## Live Demo
 - Frontend: https://ai-interview-prep-seven-phi.vercel.app/
-- API: https://ai-interview-prep-api.onrender.com/api/health
+- API: https://ai-interview-prep-api-6txm.onrender.com/api/health
 
 ## Built by
 Sujeet Rajbhar — 2026
